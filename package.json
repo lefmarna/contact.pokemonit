@@ -9,10 +9,6 @@
     "lint": "next lint",
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx}": "yarn lint",
-    "*.{css,scss,js,ts,jsx,tsx,md,yml}": "prettier --write"
-  },
   "dependencies": {
     "next": "12.1.4",
     "react": "18.0.0",
