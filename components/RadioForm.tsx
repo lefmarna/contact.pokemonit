@@ -2,7 +2,7 @@ import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } f
 import Link from 'next/link'
 import { RadioType } from '../types'
 
-export const Radios = (props: RadioType) => {
+export const RadioForm = (props: RadioType) => {
   const { formLabel, items } = props
   return (
     <FormControl>

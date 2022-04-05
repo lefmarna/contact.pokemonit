@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Radios } from '../components/Radios'
+import { RadioForm } from '../components/RadioForm'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>ポケモニット</h1>
-        <Radios formLabel={formLabel} items={items} />
+        <RadioForm formLabel={formLabel} items={items} />
       </main>
     </div>
   )
