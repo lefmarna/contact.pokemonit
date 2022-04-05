@@ -1,4 +1,5 @@
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import Link from 'next/link'
 import { RadioType } from '../types'
 
 export const Radios = (props: RadioType) => {
@@ -11,7 +12,9 @@ export const Radios = (props: RadioType) => {
           <FormControlLabel value={item.value} control={<Radio />} label={item.label} key={item.value} />
         ))}
       </RadioGroup>
-      <Button variant='contained'>次へ</Button>
+      <Link href='/info' passHref>
+        <Button variant='contained'>次へ</Button>
+      </Link>
     </FormControl>
   )
 }
