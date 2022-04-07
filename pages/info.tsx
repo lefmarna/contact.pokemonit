@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Head from 'next/head'
 import { RadioForm } from '../components/RadioForm'
 import styles from '../styles/Home.module.css'
 
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>ポケモニット - 質問フォーム</h1>
+        <h1 className={styles.title}>ポケモニット</h1>
         <RadioForm formLabel={formLabel} items={items} />
       </main>
     </div>
