@@ -3,7 +3,7 @@ import { RadioForm } from '../components/RadioForm'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const formLabel = '質問の種類を教えて下さい。'
+  const formLabel = '質問の種類を選択してください。'
   const items = [
     { value: 'female', label: 'マイコンの導入方法について' },
     { value: 'male', label: 'コードがうまく動かない' },
@@ -12,7 +12,6 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>ポケモニット - 質問フォーム</h1>
         <RadioForm formLabel={formLabel} items={items} />
       </main>
     </div>
