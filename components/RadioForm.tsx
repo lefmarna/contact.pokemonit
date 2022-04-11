@@ -13,7 +13,7 @@ export const RadioForm = (props: RadioType) => {
   }
 
   const onClickRouterPush = () => {
-    router.push('/info')
+    router.push('/setup/info')
   }
 
   return (
@@ -32,7 +32,7 @@ export const RadioForm = (props: RadioType) => {
         ))}
       </RadioGroup>
       <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
-        <Link href='/info' passHref>
+        <Link href='/setup/info' passHref>
           <Button onClick={onClickRouterBack} variant='outlined' color='inherit' sx={{ width: 1, mr: 1 }}>
             戻る
           </Button>

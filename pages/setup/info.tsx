@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import { RadioForm } from '../components/RadioForm'
-import styles from '../styles/Home.module.css'
+import { RadioForm } from '../../components/RadioForm'
+import styles from '../../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const formLabel = '質問の種類を教えて下さい。'
