@@ -5,8 +5,8 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
   const formLabel = '質問の種類を選択してください。'
   const items = [
-    { value: 'female', label: 'マイコンの導入方法について' },
-    { value: 'male', label: 'コードがうまく動かない' },
+    { value: 'setup', label: 'マイコンの導入方法について' },
+    { value: 'code', label: 'コードがうまく動かない' },
     { value: 'other', label: 'その他' },
   ]
   return (
