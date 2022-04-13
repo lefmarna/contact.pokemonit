@@ -17,7 +17,7 @@ export const RadioForm = (props: RadioType) => {
 
   const onClickRouterPush = () => {
     if (value === 'setup') {
-      router.push('/setup/info')
+      router.push('/setup/computer')
     }
     if (value === 'code') {
       router.push('/code/info')

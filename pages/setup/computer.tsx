@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 import { RadioForm } from '../../components/RadioForm'
 import styles from '../../styles/Home.module.css'
 
-const Home: NextPage = () => {
-  const formLabel = '質問の種類を教えて下さい。'
+const computer: NextPage = () => {
+  const formLabel = 'どのPCを使っていますか？'
   const items = [
-    { value: 'female', label: 'マイコンの導入方法について' },
-    { value: 'male', label: 'コードがうまく動かない' },
+    { value: 'mac', label: 'Mac' },
+    { value: 'windows', label: 'Windows' },
     { value: 'other', label: 'その他' },
   ]
   return (
@@ -18,4 +18,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default computer
