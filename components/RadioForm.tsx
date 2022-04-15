@@ -1,11 +1,9 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import { RadioType } from '../types'
 import styles from '../styles/Home.module.css'
-import { useRouter } from 'next/router'
 
 export const RadioForm = (props: RadioType) => {
   const { formLabel, items, value, handleChange } = props
-  const router = useRouter()
 
   return (
     <FormControl sx={{ width: 1 }}>
@@ -14,7 +12,7 @@ export const RadioForm = (props: RadioType) => {
       </FormLabel>
       <RadioGroup
         aria-labelledby='radio-buttons-group-label'
-        defaultValue='female'
+        defaultValue={value}
         name='radio-buttons-group'
         sx={{ mt: 3 }}
       >
