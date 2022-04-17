@@ -1,6 +1,5 @@
 import { Box, Button } from '@mui/material'
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
 import { RadioForm } from '../components/RadioForm'
@@ -14,7 +13,7 @@ const Home: NextPage = () => {
     { value: 'other', label: 'その他' },
   ]
 
-  const [value, setValue] = useState('setup')
+  const [value, setValue] = useState('')
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -24,21 +23,21 @@ const Home: NextPage = () => {
 
   const onClickRouterPush = () => {
     if (value === 'setup') {
-      router.push('/setup/computer')
+      router.push('/setup')
     }
     if (value === 'code') {
-      router.push('/code/info')
+      router.push('/code')
     }
     if (value === 'other') {
-      router.push('/other/info')
+      router.push('/other')
     }
   }
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <RadioForm formLabel={formLabel} items={items} value={value} handleChange={handleChange} />
+        <RadioForm formLabel={formLabel} items={items} handleChange={handleChange} />
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
-          <Button onClick={onClickRouterPush} variant='contained' sx={{ width: 1 }}>
+          <Button onClick={onClickRouterPush} variant='contained' sx={{ width: 1 }} disabled={value === ''}>
             次へ
           </Button>
         </Box>
