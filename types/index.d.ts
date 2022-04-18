@@ -1,6 +1,7 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, ReactNode } from 'react'
 
 export type RadioType = {
+  children?: ReactNode
   formLabel: string
   items: RadioItem[]
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
