@@ -1,20 +1,25 @@
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
-import Link from 'next/link'
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import { RadioType } from '../types'
 
 export const RadioForm = (props: RadioType) => {
-  const { formLabel, items } = props
+  const { children, formLabel, items, handleChange } = props
+
   return (
-    <FormControl>
-      <FormLabel id='demo-radio-buttons-group-label'>{formLabel}</FormLabel>
-      <RadioGroup aria-labelledby='demo-radio-buttons-group-label' defaultValue='female' name='radio-buttons-group'>
+    <FormControl sx={{ width: 1, mb: 4 }}>
+      <FormLabel id='radio-buttons-group-label' filled required>
+        {formLabel}
+      </FormLabel>
+      <RadioGroup aria-labelledby='radio-buttons-group-label' name='radio-buttons-group' sx={{ mt: 1 }}>
         {items.map((item) => (
-          <FormControlLabel value={item.value} control={<Radio />} label={item.label} key={item.value} />
+          <FormControlLabel
+            value={item.value}
+            control={<Radio onChange={handleChange} />}
+            label={item.label}
+            key={item.value}
+          />
         ))}
       </RadioGroup>
-      <Link href='/info' passHref>
-        <Button variant='contained'>次へ</Button>
-      </Link>
+      {children}
     </FormControl>
   )
 }
