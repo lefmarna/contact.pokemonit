@@ -1,4 +1,4 @@
-import { Box, TextField } from '@mui/material'
+import { Box, FormControl, FormLabel, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
@@ -45,11 +45,19 @@ const Computer: NextPage = () => {
     setLibraryValue(e.target.value)
   }
 
+  // 使われているArduino IDEのバージョンを教えてください。
+  const [arduinoValue, setArduinoValue] = useState('')
+  const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setArduinoValue(e.target.value)
+  }
+  const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
+
   const disabled =
     computerValue === '' ||
     (computerValue === 'other' && computerTextfield === '') ||
     miconValue === '' ||
-    libraryValue === ''
+    libraryValue === '' ||
+    !versionRegexp.test(arduinoValue)
   const router = useRouter()
   const onClickRouterBack = () => {
     router.back()
@@ -75,6 +83,18 @@ const Computer: NextPage = () => {
         </RadioForm>
         <RadioForm formLabel={miconTitle} items={miconItems} handleChange={onChangeMiconValue} />
         <RadioForm formLabel={libraryTitle} items={libraryItems} handleChange={onChangeLibraryValue} />
+        <FormControl sx={{ width: 1, mb: 4 }}>
+          <FormLabel id='radio-buttons-group-label' filled required>
+            Arduino IDEのバージョンを教えてください
+          </FormLabel>
+          <TextField
+            variant='standard'
+            value={arduinoValue}
+            onChange={onChangeArduinoValue}
+            placeholder='1.8.2'
+            sx={{ mt: 1 }}
+          />
+        </FormControl>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
           <RouterButton onClick={onClickRouterBack} variant='outlined' color='inherit'>
             戻る
