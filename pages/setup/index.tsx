@@ -52,12 +52,32 @@ const Computer: NextPage = () => {
   }
   const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
 
+  // どこで止まっていますか？
+  const whereStopTitle = 'どこで止まっていますか？'
+  const whereStopItems = [
+    { value: 'micon', label: 'マイコンがPCに認識されない' },
+    { value: 'boards', label: 'boards.txtの編集ができない' },
+    { value: 'error', label: 'コードの書き込み時にエラーが出る' },
+    { value: 'noWork', label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない' },
+    { value: 'other', label: 'その他' },
+  ]
+  const [whereStopValue, setWhereStopValue] = useState('')
+  const onWhereStopValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setWhereStopValue(e.target.value)
+  }
+  const [whereStopTextfield, setWhereStopTextfield] = useState('')
+  const onChangeWhereStopTextfield = (e: ChangeEvent<HTMLInputElement>) => {
+    setWhereStopTextfield(e.target.value)
+  }
+
   const disabled =
     computerValue === '' ||
     (computerValue === 'other' && computerTextfield === '') ||
     miconValue === '' ||
     libraryValue === '' ||
-    !versionRegexp.test(arduinoValue)
+    !versionRegexp.test(arduinoValue) ||
+    whereStopValue === '' ||
+    (whereStopValue === 'other' && whereStopTextfield === '')
   const router = useRouter()
   const onClickRouterBack = () => {
     router.back()
@@ -77,7 +97,6 @@ const Computer: NextPage = () => {
               variant='standard'
               value={computerTextfield}
               onChange={onChangeComputerTextfield}
-              sx={{ mt: 1 }}
             />
           )}
         </RadioForm>
@@ -95,6 +114,16 @@ const Computer: NextPage = () => {
             sx={{ mt: 1 }}
           />
         </FormControl>
+        <RadioForm formLabel={whereStopTitle} items={whereStopItems} handleChange={onWhereStopValue}>
+          {whereStopValue === 'other' && (
+            <TextField
+              label='どこで止まっているのかを詳細に記載してください'
+              variant='standard'
+              value={whereStopTextfield}
+              onChange={onChangeWhereStopTextfield}
+            />
+          )}
+        </RadioForm>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
           <RouterButton onClick={onClickRouterBack} variant='outlined' color='inherit'>
             戻る
