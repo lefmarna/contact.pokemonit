@@ -1,4 +1,4 @@
-import { Box, TextField } from '@mui/material'
+import { Box, FormControl, FormLabel, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
@@ -45,11 +45,39 @@ const Computer: NextPage = () => {
     setLibraryValue(e.target.value)
   }
 
+  // 使われているArduino IDEのバージョンを教えてください。
+  const [arduinoValue, setArduinoValue] = useState('')
+  const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setArduinoValue(e.target.value)
+  }
+  const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
+
+  // どこで止まっていますか？
+  const whereStopTitle = 'どこで止まっていますか？'
+  const whereStopItems = [
+    { value: 'micon', label: 'マイコンがPCに認識されない' },
+    { value: 'boards', label: 'boards.txtの編集ができない' },
+    { value: 'error', label: 'コードの書き込み時にエラーが出る' },
+    { value: 'noWork', label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない' },
+    { value: 'other', label: 'その他' },
+  ]
+  const [whereStopValue, setWhereStopValue] = useState('')
+  const onWhereStopValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setWhereStopValue(e.target.value)
+  }
+  const [whereStopTextfield, setWhereStopTextfield] = useState('')
+  const onChangeWhereStopTextfield = (e: ChangeEvent<HTMLInputElement>) => {
+    setWhereStopTextfield(e.target.value)
+  }
+
   const disabled =
     computerValue === '' ||
     (computerValue === 'other' && computerTextfield === '') ||
     miconValue === '' ||
-    libraryValue === ''
+    libraryValue === '' ||
+    !versionRegexp.test(arduinoValue) ||
+    whereStopValue === '' ||
+    (whereStopValue === 'other' && whereStopTextfield === '')
   const router = useRouter()
   const onClickRouterBack = () => {
     router.back()
@@ -69,12 +97,33 @@ const Computer: NextPage = () => {
               variant='standard'
               value={computerTextfield}
               onChange={onChangeComputerTextfield}
-              sx={{ mt: 1 }}
             />
           )}
         </RadioForm>
         <RadioForm formLabel={miconTitle} items={miconItems} handleChange={onChangeMiconValue} />
         <RadioForm formLabel={libraryTitle} items={libraryItems} handleChange={onChangeLibraryValue} />
+        <FormControl sx={{ width: 1, mb: 4 }}>
+          <FormLabel id='radio-buttons-group-label' filled required>
+            Arduino IDEのバージョンを教えてください
+          </FormLabel>
+          <TextField
+            variant='standard'
+            value={arduinoValue}
+            onChange={onChangeArduinoValue}
+            placeholder='1.8.2'
+            sx={{ mt: 1 }}
+          />
+        </FormControl>
+        <RadioForm formLabel={whereStopTitle} items={whereStopItems} handleChange={onWhereStopValue}>
+          {whereStopValue === 'other' && (
+            <TextField
+              label='どこで止まっているのかを詳細に記載してください'
+              variant='standard'
+              value={whereStopTextfield}
+              onChange={onChangeWhereStopTextfield}
+            />
+          )}
+        </RadioForm>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
           <RouterButton onClick={onClickRouterBack} variant='outlined' color='inherit'>
             戻る
