@@ -6,7 +6,7 @@ import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
 import styles from '../../styles/Home.module.css'
 
-const Computer: NextPage = () => {
+const Setup: NextPage = () => {
   // 使われているPCの種類はなんですか？
   const computerTitle = '使われているPCの種類はなんですか？'
   const computerItems = [
@@ -137,4 +137,4 @@ const Computer: NextPage = () => {
   )
 }
 
-export default Computer
+export default Setup
