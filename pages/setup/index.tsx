@@ -70,6 +70,12 @@ const Setup: NextPage = () => {
     setWhereStopTextfield(e.target.value)
   }
 
+  // どこまでの動作を確認できているかを教えてください
+  const [debugTextField, setDebugTextField] = useState('')
+  const onChangeDebugTextField = (e: ChangeEvent<HTMLInputElement>) => {
+    setDebugTextField(e.target.value)
+  }
+
   const disabled =
     computerValue === '' ||
     (computerValue === 'other' && computerTextfield === '') ||
@@ -124,6 +130,12 @@ const Setup: NextPage = () => {
             />
           )}
         </RadioForm>
+        <FormControl sx={{ width: 1, mb: 4 }}>
+          <FormLabel id='radio-buttons-group-label' filled required>
+            どこまでの動作を確認できているかを教えてください
+          </FormLabel>
+          <TextField value={debugTextField} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
+        </FormControl>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
           <RouterButton onClick={onClickRouterBack} variant='outlined' color='inherit'>
             戻る
