@@ -70,7 +70,7 @@ const Setup: NextPage = () => {
     setWhereStopTextfield(e.target.value)
   }
 
-  // どこまでの動作を確認できているかを教えてください
+  // どこまでの動作を確認できているかを具体的に教えてください
   const [debugTextField, setDebugTextField] = useState('')
   const onChangeDebugTextField = (e: ChangeEvent<HTMLInputElement>) => {
     setDebugTextField(e.target.value)
@@ -83,7 +83,8 @@ const Setup: NextPage = () => {
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
     whereStopValue === '' ||
-    (whereStopValue === 'other' && whereStopTextfield === '')
+    (whereStopValue === 'other' && whereStopTextfield === '') ||
+    debugTextField === ''
   const router = useRouter()
   const onClickRouterBack = () => {
     router.back()
@@ -132,7 +133,7 @@ const Setup: NextPage = () => {
         </RadioForm>
         <FormControl sx={{ width: 1, mb: 4 }}>
           <FormLabel id='radio-buttons-group-label' filled required>
-            どこまでの動作を確認できているかを教えてください
+            どこまでの動作を確認できているかを具体的に教えてください
           </FormLabel>
           <TextField value={debugTextField} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
         </FormControl>
