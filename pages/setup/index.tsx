@@ -2,8 +2,10 @@ import { Box, FormControl, FormLabel, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
+import { setupState } from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
@@ -14,7 +16,7 @@ const Setup: NextPage = () => {
     { value: 'windows', label: 'Windows' },
     { value: 'other', label: 'その他' },
   ]
-  const [computerValue, setComputerValue] = useState('')
+  const [computerValue, setComputerValue] = useRecoilState(setupState)
   const [computerTextfield, setComputerTextfield] = useState('')
   const onChangeComputerValue = (e: ChangeEvent<HTMLInputElement>) => {
     setComputerValue(e.target.value)
