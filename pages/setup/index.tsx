@@ -17,7 +17,7 @@ const Setup: NextPage = () => {
     { value: 'other', label: 'その他' },
   ]
   const [computerValue, setComputerValue] = useRecoilState(setupState)
-  const [computerTextfield, setComputerTextfield] = useState('')
+  const [computerTextfield, setComputerTextfield] = useRecoilState(setupState)
   const onChangeComputerValue = (e: ChangeEvent<HTMLInputElement>) => {
     setComputerValue(e.target.value)
   }
