@@ -31,7 +31,7 @@ const Setup: NextPage = () => {
     { value: 'blog', label: 'はい' },
     { value: 'other', label: 'いいえ' },
   ]
-  const [miconValue, setMiconValue] = useState('')
+  const [miconValue, setMiconValue] = useRecoilState(setupState)
   const onChangeMiconValue = (e: ChangeEvent<HTMLInputElement>) => {
     setMiconValue(e.target.value)
   }
