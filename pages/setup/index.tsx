@@ -42,7 +42,7 @@ const Setup: NextPage = () => {
     { value: 'NintendoSwitchControlLibrary', label: 'NintendoSwitchControlLibrary' },
     { value: 'NintendoSwitchControll', label: 'NintendoSwitchControll' },
   ]
-  const [libraryValue, setLibraryValue] = useState('')
+  const [libraryValue, setLibraryValue] = useRecoilState(setupState)
   const onChangeLibraryValue = (e: ChangeEvent<HTMLInputElement>) => {
     setLibraryValue(e.target.value)
   }
