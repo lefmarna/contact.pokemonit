@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
-import { setupState } from '../../src/store/setupState'
+import { computerState, computerTextfieldState, libraryState, miconState } from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
@@ -16,8 +16,8 @@ const Setup: NextPage = () => {
     { value: 'windows', label: 'Windows' },
     { value: 'other', label: 'その他' },
   ]
-  const [computerValue, setComputerValue] = useRecoilState(setupState)
-  const [computerTextfield, setComputerTextfield] = useRecoilState(setupState)
+  const [computerValue, setComputerValue] = useRecoilState(computerState)
+  const [computerTextfield, setComputerTextfield] = useRecoilState(computerTextfieldState)
   const onChangeComputerValue = (e: ChangeEvent<HTMLInputElement>) => {
     setComputerValue(e.target.value)
   }
@@ -31,7 +31,7 @@ const Setup: NextPage = () => {
     { value: 'blog', label: 'はい' },
     { value: 'other', label: 'いいえ' },
   ]
-  const [miconValue, setMiconValue] = useRecoilState(setupState)
+  const [miconValue, setMiconValue] = useRecoilState(miconState)
   const onChangeMiconValue = (e: ChangeEvent<HTMLInputElement>) => {
     setMiconValue(e.target.value)
   }
@@ -42,7 +42,7 @@ const Setup: NextPage = () => {
     { value: 'NintendoSwitchControlLibrary', label: 'NintendoSwitchControlLibrary' },
     { value: 'NintendoSwitchControll', label: 'NintendoSwitchControll' },
   ]
-  const [libraryValue, setLibraryValue] = useRecoilState(setupState)
+  const [libraryValue, setLibraryValue] = useRecoilState(libraryState)
   const onChangeLibraryValue = (e: ChangeEvent<HTMLInputElement>) => {
     setLibraryValue(e.target.value)
   }
