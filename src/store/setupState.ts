@@ -5,8 +5,8 @@ export const computerState = atom({
   default: '',
 })
 
-export const computerTextfieldState = atom({
-  key: 'computerTextfieldState',
+export const computerTextFieldState = atom({
+  key: 'computerTextFieldState',
   default: '',
 })
 
