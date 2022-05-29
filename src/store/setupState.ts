@@ -19,3 +19,8 @@ export const libraryState = atom({
   key: 'libraryState',
   default: '',
 })
+
+export const arduinoState = atom({
+  key: 'arduinoState',
+  default: '',
+})

@@ -5,7 +5,13 @@ import { ChangeEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
-import { computerState, computerTextfieldState, libraryState, miconState } from '../../src/store/setupState'
+import {
+  arduinoState,
+  computerState,
+  computerTextfieldState,
+  libraryState,
+  miconState,
+} from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
@@ -48,7 +54,7 @@ const Setup: NextPage = () => {
   }
 
   // 使われているArduino IDEのバージョンを教えてください。
-  const [arduinoValue, setArduinoValue] = useState('')
+  const [arduinoValue, setArduinoValue] = useRecoilState(arduinoState)
   const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
     setArduinoValue(e.target.value)
   }
