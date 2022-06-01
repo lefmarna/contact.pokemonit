@@ -2,8 +2,16 @@ import { Box, FormControl, FormLabel, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
+import {
+  arduinoState,
+  computerState,
+  computerTextFieldState,
+  libraryState,
+  miconState,
+} from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
@@ -14,13 +22,13 @@ const Setup: NextPage = () => {
     { value: 'windows', label: 'Windows' },
     { value: 'other', label: 'その他' },
   ]
-  const [computerValue, setComputerValue] = useState('')
-  const [computerTextfield, setComputerTextfield] = useState('')
+  const [computerValue, setComputerValue] = useRecoilState(computerState)
+  const [computerTextField, setComputerTextField] = useRecoilState(computerTextFieldState)
   const onChangeComputerValue = (e: ChangeEvent<HTMLInputElement>) => {
     setComputerValue(e.target.value)
   }
-  const onChangeComputerTextfield = (e: ChangeEvent<HTMLInputElement>) => {
-    setComputerTextfield(e.target.value)
+  const onChangeComputerTextField = (e: ChangeEvent<HTMLInputElement>) => {
+    setComputerTextField(e.target.value)
   }
 
   // Arduino Leonardo（マイコン）はブログ内で紹介しているものを使われていますか？
@@ -29,7 +37,7 @@ const Setup: NextPage = () => {
     { value: 'blog', label: 'はい' },
     { value: 'other', label: 'いいえ' },
   ]
-  const [miconValue, setMiconValue] = useState('')
+  const [miconValue, setMiconValue] = useRecoilState(miconState)
   const onChangeMiconValue = (e: ChangeEvent<HTMLInputElement>) => {
     setMiconValue(e.target.value)
   }
@@ -40,13 +48,13 @@ const Setup: NextPage = () => {
     { value: 'NintendoSwitchControlLibrary', label: 'NintendoSwitchControlLibrary' },
     { value: 'NintendoSwitchControll', label: 'NintendoSwitchControll' },
   ]
-  const [libraryValue, setLibraryValue] = useState('')
+  const [libraryValue, setLibraryValue] = useRecoilState(libraryState)
   const onChangeLibraryValue = (e: ChangeEvent<HTMLInputElement>) => {
     setLibraryValue(e.target.value)
   }
 
   // 使われているArduino IDEのバージョンを教えてください。
-  const [arduinoValue, setArduinoValue] = useState('')
+  const [arduinoValue, setArduinoValue] = useRecoilState(arduinoState)
   const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
     setArduinoValue(e.target.value)
   }
@@ -65,9 +73,9 @@ const Setup: NextPage = () => {
   const onWhereStopValue = (e: ChangeEvent<HTMLInputElement>) => {
     setWhereStopValue(e.target.value)
   }
-  const [whereStopTextfield, setWhereStopTextfield] = useState('')
-  const onChangeWhereStopTextfield = (e: ChangeEvent<HTMLInputElement>) => {
-    setWhereStopTextfield(e.target.value)
+  const [whereStopTextField, setWhereStopTextField] = useState('')
+  const onChangeWhereStopTextField = (e: ChangeEvent<HTMLInputElement>) => {
+    setWhereStopTextField(e.target.value)
   }
 
   // どこまでの動作を確認できているかを具体的に教えてください
@@ -78,12 +86,12 @@ const Setup: NextPage = () => {
 
   const disabled =
     computerValue === '' ||
-    (computerValue === 'other' && computerTextfield === '') ||
+    (computerValue === 'other' && computerTextField === '') ||
     miconValue === '' ||
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
     whereStopValue === '' ||
-    (whereStopValue === 'other' && whereStopTextfield === '') ||
+    (whereStopValue === 'other' && whereStopTextField === '') ||
     debugTextField === ''
   const router = useRouter()
   const onClickRouterBack = () => {
@@ -102,8 +110,8 @@ const Setup: NextPage = () => {
             <TextField
               label='使われているPCを記入してください'
               variant='standard'
-              value={computerTextfield}
-              onChange={onChangeComputerTextfield}
+              value={computerTextField}
+              onChange={onChangeComputerTextField}
             />
           )}
         </RadioForm>
@@ -126,8 +134,8 @@ const Setup: NextPage = () => {
             <TextField
               label='どこで止まっているのかを詳細に記載してください'
               variant='standard'
-              value={whereStopTextfield}
-              onChange={onChangeWhereStopTextfield}
+              value={whereStopTextField}
+              onChange={onChangeWhereStopTextField}
             />
           )}
         </RadioForm>
