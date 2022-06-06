@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "ignorePaths": [
+    ".devcontainer",
+    ".github/workflows",
+    "README.md"
+  ],
+  "dictionaryDefinitions": [],
+  "dictionaries": [],
+  "words": [
+    "axios",
+    "circleci",
+    "commitlint",
+    "devcontainer",
+    "NintendoSwitchControll",
+    "rscss",
+    "stylelint"
+  ],
+  "ignoreWords": [],
+  "import": []
+}
