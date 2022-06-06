@@ -1,0 +1,25 @@
+version: '3.9'
+
+volumes:
+  node_modules:
+  # gitconfig:
+  #   name: gitconfig
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./.docker/node/Dockerfile
+    container_name: contact.pokemonit
+    working_dir: /contact.pokemonit
+    ports:
+      - 3000:3000
+    volumes:
+      # マウント
+      - .:/contact.pokemonit
+      - ~/.ssh:/root/.ssh
+      # 永続化
+      - node_modules:/contact.pokemonit/node_modules
+      # - gitconfig:/root/.gitconfig
+    stdin_open: true
+    tty: true
