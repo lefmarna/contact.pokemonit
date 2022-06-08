@@ -2,8 +2,6 @@ version: '3.9'
 
 volumes:
   node_modules:
-  # gitconfig:
-  #   name: gitconfig
 
 services:
   node:
@@ -20,6 +18,5 @@ services:
       - ~/.ssh:/root/.ssh
       # 永続化
       - node_modules:/contact.pokemonit/node_modules
-      # - gitconfig:/root/.gitconfig
     stdin_open: true
     tty: true

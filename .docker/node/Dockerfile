@@ -1,4 +1,4 @@
-FROM node:16.15.0-slim
+FROM node:16.15.1-slim
 
 RUN apt-get update \
     && apt-get autoremove -y \
@@ -28,7 +28,14 @@ RUN apt-get update \
     # 容量削減のため、インストーラーを削除する
     && cd .. \
     && rm -f v2.36.1.tar.gz \
-    && rm -rf git-*
+    && rm -rf git-* \
+    # git-secretsのインストール
+    && git clone https://github.com/awslabs/git-secrets \
+    && cd git-secrets \
+    && make install \
+    && git secrets --register-aws \
+    && cd .. \
+    && rm -rf git-secrets
 
 WORKDIR /contact.pokemonit
 
