@@ -1,0 +1,67 @@
+.PHONY: docker-build
+docker-build:
+	docker-compose build --no-cache --force-rm
+
+.PHONY: init
+init:
+	@make docker-build
+	@make install
+
+.PHONY: setup
+setup:
+	@make up
+	@make open
+	@make dev
+
+.PHONY: up
+up:
+	docker-compose up -d
+
+.PHONY: stop
+stop:
+	docker-compose stop
+
+.PHONY: down
+down:
+	docker-compose down
+
+.PHONY: restart
+restart:
+	@make down
+	@make up
+
+.PHONY: destroy
+destroy:
+	docker-compose down --rmi all --volumes
+
+.PHONY: ps
+ps:
+	docker-compose ps
+
+.PHONY: install
+install:
+	docker-compose exec node npm install
+
+.PHONY: node
+node:
+	docker-compose exec node bash
+
+.PHONY: dev
+dev:
+	docker-compose exec node npm run dev
+
+.PHONY: build
+build:
+	docker-compose exec node npm run build
+
+.PHONY: start
+start:
+	docker-compose exec node npm run start
+
+.PHONY: lint
+lint:
+	docker-compose exec node npm run lint
+
+.PHONY: open
+open:
+	devcontainer open
