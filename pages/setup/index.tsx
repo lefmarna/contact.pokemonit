@@ -146,10 +146,10 @@ const Setup: NextPage = () => {
           <TextField value={debugTextField} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
         </FormControl>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
-          <RouterButton onClick={onClickRouterBack} variant='outlined' color='inherit'>
+          <RouterButton onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
             戻る
           </RouterButton>
-          <RouterButton onClick={onClickRouterPush} variant='contained' disabled={disabled}>
+          <RouterButton onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
             次へ
           </RouterButton>
         </Box>
