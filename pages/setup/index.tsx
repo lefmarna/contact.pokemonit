@@ -5,10 +5,11 @@ import { ChangeEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
+import { COMPUTER_TITLE, LIBRARY_TITLE, MICON_TITLE, WHERE_STOP_TITLE } from '../../constants/setup'
 import {
   arduinoState,
   computerState,
-  computerTextFieldState,
+  computerTextFieldValueState,
   libraryState,
   miconState,
 } from '../../src/store/setupState'
@@ -16,23 +17,21 @@ import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
   // 使われているPCの種類はなんですか？
-  const computerTitle = '使われているPCの種類はなんですか？'
   const computerItems = [
     { value: 'mac', label: 'Mac' },
     { value: 'windows', label: 'Windows' },
     { value: 'other', label: 'その他' },
   ]
   const [computerValue, setComputerValue] = useRecoilState(computerState)
-  const [computerTextField, setComputerTextField] = useRecoilState(computerTextFieldState)
+  const [computerTextFieldValue, setComputerTextFieldValue] = useRecoilState(computerTextFieldValueState)
   const onChangeComputerValue = (e: ChangeEvent<HTMLInputElement>) => {
     setComputerValue(e.target.value)
   }
-  const onChangeComputerTextField = (e: ChangeEvent<HTMLInputElement>) => {
-    setComputerTextField(e.target.value)
+  const onChangeComputerTextFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setComputerTextFieldValue(e.target.value)
   }
 
   // Arduino Leonardo（マイコン）はブログ内で紹介しているものを使われていますか？
-  const miconTitle = 'Arduino Leonardo（マイコン）はブログ内で紹介しているものを使われていますか？'
   const miconItems = [
     { value: 'blog', label: 'はい' },
     { value: 'other', label: 'いいえ' },
@@ -43,7 +42,6 @@ const Setup: NextPage = () => {
   }
 
   // 使われているライブラリはどれですか？
-  const libraryTitle = '使われているライブラリはどちらですか？'
   const libraryItems = [
     { value: 'NintendoSwitchControlLibrary', label: 'NintendoSwitchControlLibrary' },
     { value: 'NintendoSwitchControll', label: 'NintendoSwitchControll' },
@@ -61,7 +59,6 @@ const Setup: NextPage = () => {
   const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
 
   // どこで止まっていますか？
-  const whereStopTitle = 'どこで止まっていますか？'
   const whereStopItems = [
     { value: 'micon', label: 'マイコンがPCに認識されない' },
     { value: 'boards', label: 'boards.txtの編集ができない' },
@@ -86,7 +83,7 @@ const Setup: NextPage = () => {
 
   const disabled =
     computerValue === '' ||
-    (computerValue === 'other' && computerTextField === '') ||
+    (computerValue === 'other' && computerTextFieldValue === '') ||
     miconValue === '' ||
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
@@ -99,24 +96,24 @@ const Setup: NextPage = () => {
   }
 
   const onClickRouterPush = () => {
-    console.log('リンク先はまだ作れていません')
+    router.push('/result')
   }
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <RadioForm formLabel={computerTitle} items={computerItems} handleChange={onChangeComputerValue}>
+        <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} handleChange={onChangeComputerValue}>
           {computerValue === 'other' && (
             <TextField
               label='使われているPCを記入してください'
               variant='standard'
-              value={computerTextField}
-              onChange={onChangeComputerTextField}
+              value={computerTextFieldValue}
+              onChange={onChangeComputerTextFieldValue}
             />
           )}
         </RadioForm>
-        <RadioForm formLabel={miconTitle} items={miconItems} handleChange={onChangeMiconValue} />
-        <RadioForm formLabel={libraryTitle} items={libraryItems} handleChange={onChangeLibraryValue} />
+        <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
+        <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
         <FormControl sx={{ width: 1, mb: 4 }}>
           <FormLabel id='radio-buttons-group-label' filled required>
             Arduino IDEのバージョンを教えてください
@@ -129,7 +126,7 @@ const Setup: NextPage = () => {
             sx={{ mt: 1 }}
           />
         </FormControl>
-        <RadioForm formLabel={whereStopTitle} items={whereStopItems} handleChange={onWhereStopValue}>
+        <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
           {whereStopValue === 'other' && (
             <TextField
               label='どこで止まっているのかを詳細に記載してください'
