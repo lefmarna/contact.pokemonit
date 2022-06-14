@@ -10,7 +10,6 @@ services:
     ports:
       - 3000:3000
     volumes:
-      # マウント
       - .:/contact.pokemonit
       - ${HOME}/.ssh:/root/.ssh
     stdin_open: true

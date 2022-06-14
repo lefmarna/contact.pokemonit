@@ -13,7 +13,7 @@ import {
 import styles from '../../styles/Home.module.css'
 import { useState } from 'react'
 
-const Result: NextPage = () => {
+const SetupResult: NextPage = () => {
   const computerValue = useRecoilValue(computerState)
   const computerTextFieldValue = useRecoilValue(computerTextFieldValueState)
   const miconValue = useRecoilValue(miconState)
@@ -77,4 +77,4 @@ const Result: NextPage = () => {
   )
 }
 
-export default Result
+export default SetupResult

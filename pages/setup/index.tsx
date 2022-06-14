@@ -96,7 +96,7 @@ const Setup: NextPage = () => {
   }
 
   const onClickRouterPush = () => {
-    router.push('/result')
+    router.push('/setup/result')
   }
 
   return (
