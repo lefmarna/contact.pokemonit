@@ -1,17 +1,27 @@
 import { Box, FormControl, FormLabel, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
-import { ARDUINO_TITLE, COMPUTER_TITLE, LIBRARY_TITLE, MICON_TITLE, WHERE_STOP_TITLE } from '../../constants/setup'
+import {
+  ARDUINO_TITLE,
+  COMPUTER_TITLE,
+  DEBUG_TEXT_FIELD_TITLE,
+  LIBRARY_TITLE,
+  MICON_TITLE,
+  WHERE_STOP_TITLE,
+} from '../../constants/setup'
 import {
   arduinoState,
   computerState,
   computerTextFieldValueState,
+  debugTextFieldState,
   libraryState,
   miconState,
+  whereStopState,
+  whereStopTextFieldState,
 } from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 
@@ -66,19 +76,19 @@ const Setup: NextPage = () => {
     { value: 'noWork', label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない' },
     { value: 'other', label: 'その他' },
   ]
-  const [whereStopValue, setWhereStopValue] = useState('')
+  const [whereStopValue, setWhereStopValue] = useRecoilState(whereStopState)
   const onWhereStopValue = (e: ChangeEvent<HTMLInputElement>) => {
     setWhereStopValue(e.target.value)
   }
-  const [whereStopTextField, setWhereStopTextField] = useState('')
+  const [whereStopTextFieldValue, setWhereStopTextFieldValue] = useRecoilState(whereStopTextFieldState)
   const onChangeWhereStopTextField = (e: ChangeEvent<HTMLInputElement>) => {
-    setWhereStopTextField(e.target.value)
+    setWhereStopTextFieldValue(e.target.value)
   }
 
   // どこまでの動作を確認できているかを具体的に教えてください
-  const [debugTextField, setDebugTextField] = useState('')
+  const [debugTextFieldValue, setDebugTextFieldValue] = useRecoilState(debugTextFieldState)
   const onChangeDebugTextField = (e: ChangeEvent<HTMLInputElement>) => {
-    setDebugTextField(e.target.value)
+    setDebugTextFieldValue(e.target.value)
   }
 
   const disabled =
@@ -88,9 +98,11 @@ const Setup: NextPage = () => {
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
     whereStopValue === '' ||
-    (whereStopValue === 'other' && whereStopTextField === '') ||
-    debugTextField === ''
+    (whereStopValue === 'other' && whereStopTextFieldValue === '') ||
+    debugTextFieldValue === ''
+
   const router = useRouter()
+
   const onClickRouterBack = () => {
     router.back()
   }
@@ -129,18 +141,18 @@ const Setup: NextPage = () => {
         <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
           {whereStopValue === 'other' && (
             <TextField
-              label='どこで止まっているのかを詳細に記載してください'
+              label={WHERE_STOP_TITLE}
               variant='standard'
-              value={whereStopTextField}
+              value={whereStopTextFieldValue}
               onChange={onChangeWhereStopTextField}
             />
           )}
         </RadioForm>
         <FormControl sx={{ width: 1, mb: 4 }}>
           <FormLabel id='radio-buttons-group-label' filled required>
-            どこまでの動作を確認できているかを具体的に教えてください
+            {DEBUG_TEXT_FIELD_TITLE}
           </FormLabel>
-          <TextField value={debugTextField} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
+          <TextField value={debugTextFieldValue} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
         </FormControl>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
           <RouterButton onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
