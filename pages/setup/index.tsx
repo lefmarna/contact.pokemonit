@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
-import { COMPUTER_TITLE, LIBRARY_TITLE, MICON_TITLE, WHERE_STOP_TITLE } from '../../constants/setup'
+import { ARDUINO_TITLE, COMPUTER_TITLE, LIBRARY_TITLE, MICON_TITLE, WHERE_STOP_TITLE } from '../../constants/setup'
 import {
   arduinoState,
   computerState,
@@ -51,7 +51,7 @@ const Setup: NextPage = () => {
     setLibraryValue(e.target.value)
   }
 
-  // 使われているArduino IDEのバージョンを教えてください。
+  // Arduino IDEのバージョンを教えてください。
   const [arduinoValue, setArduinoValue] = useRecoilState(arduinoState)
   const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
     setArduinoValue(e.target.value)
@@ -116,7 +116,7 @@ const Setup: NextPage = () => {
         <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
         <FormControl sx={{ width: 1, mb: 4 }}>
           <FormLabel id='radio-buttons-group-label' filled required>
-            Arduino IDEのバージョンを教えてください
+            {ARDUINO_TITLE}
           </FormLabel>
           <TextField
             variant='standard'

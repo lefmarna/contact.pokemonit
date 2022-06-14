@@ -1,7 +1,7 @@
 import { IconButton, InputAdornment, OutlinedInput, TextField, Tooltip } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRecoilValue } from 'recoil'
-import { COMPUTER_TITLE, LIBRARY_TITLE, MICON_TITLE, WHERE_STOP_TITLE } from '../../constants/setup'
+import { ARDUINO_TITLE, COMPUTER_TITLE, LIBRARY_TITLE, MICON_TITLE, WHERE_STOP_TITLE } from '../../constants/setup'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import {
   arduinoState,
@@ -28,18 +28,7 @@ const Result: NextPage = () => {
 
   const computerResult = computerValue !== 'other' ? computerValue : computerTextFieldValue
 
-  const resultMessage = `
-    【${COMPUTER_TITLE}】
-    ${computerResult}
-    \n
-    【${MICON_TITLE}】
-    ${miconValue}
-    \n
-    【${LIBRARY_TITLE}】
-    ${libraryValue}
-    \n
-    【Arduino IDEのバージョンを教えてください】
-    ${arduinoValue}\n
+  const resultMessage = `【${COMPUTER_TITLE}】\n${computerResult}\n\n【${MICON_TITLE}】\n${miconValue}\n\n【${LIBRARY_TITLE}】\n${libraryValue}\n\n【${ARDUINO_TITLE}】\n${arduinoValue}\n
   `
 
   const [openTip, setOpenTip] = useState(false)
