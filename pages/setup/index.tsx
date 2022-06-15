@@ -28,9 +28,9 @@ import styles from '../../styles/Home.module.css'
 const Setup: NextPage = () => {
   // 使われているPCの種類はなんですか？
   const computerItems = [
-    { value: 'mac', label: 'Mac' },
-    { value: 'windows', label: 'Windows' },
-    { value: 'other', label: 'その他' },
+    { value: 'Mac', label: 'Mac' },
+    { value: 'Windows', label: 'Windows' },
+    { value: 'その他', label: 'その他' },
   ]
   const [computerValue, setComputerValue] = useRecoilState(computerState)
   const [computerTextFieldValue, setComputerTextFieldValue] = useRecoilState(computerTextFieldValueState)
@@ -43,8 +43,8 @@ const Setup: NextPage = () => {
 
   // Arduino Leonardo（マイコン）はブログ内で紹介しているものを使われていますか？
   const miconItems = [
-    { value: 'blog', label: 'はい' },
-    { value: 'other', label: 'いいえ' },
+    { value: 'はい', label: 'はい' },
+    { value: 'いいえ', label: 'いいえ' },
   ]
   const [miconValue, setMiconValue] = useRecoilState(miconState)
   const onChangeMiconValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,11 +70,14 @@ const Setup: NextPage = () => {
 
   // どこで止まっていますか？
   const whereStopItems = [
-    { value: 'micon', label: 'マイコンがPCに認識されない' },
-    { value: 'boards', label: 'boards.txtの編集ができない' },
-    { value: 'error', label: 'コードの書き込み時にエラーが出る' },
-    { value: 'noWork', label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない' },
-    { value: 'other', label: 'その他' },
+    { value: 'マイコンがPCに認識されない', label: 'マイコンがPCに認識されない' },
+    { value: 'boards.txtの編集ができない', label: 'boards.txtの編集ができない' },
+    { value: 'コードの書き込み時にエラーが出る', label: 'コードの書き込み時にエラーが出る' },
+    {
+      value: 'コードを書き込んだマイコンをSwitchに接続しても動作しない',
+      label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない',
+    },
+    { value: 'その他', label: 'その他' },
   ]
   const [whereStopValue, setWhereStopValue] = useRecoilState(whereStopState)
   const onWhereStopValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -93,12 +96,12 @@ const Setup: NextPage = () => {
 
   const disabled =
     computerValue === '' ||
-    (computerValue === 'other' && computerTextFieldValue === '') ||
+    (computerValue === 'その他' && computerTextFieldValue === '') ||
     miconValue === '' ||
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
     whereStopValue === '' ||
-    (whereStopValue === 'other' && whereStopTextFieldValue === '') ||
+    (whereStopValue === 'その他' && whereStopTextFieldValue === '') ||
     debugTextFieldValue === ''
 
   const router = useRouter()
@@ -115,7 +118,7 @@ const Setup: NextPage = () => {
     <div className={styles.container}>
       <main className={styles.main}>
         <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} handleChange={onChangeComputerValue}>
-          {computerValue === 'other' && (
+          {computerValue === 'その他' && (
             <TextField
               label='使われているPCを記入してください'
               variant='standard'
@@ -139,7 +142,7 @@ const Setup: NextPage = () => {
           />
         </FormControl>
         <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
-          {whereStopValue === 'other' && (
+          {whereStopValue === 'その他' && (
             <TextField
               label={WHERE_STOP_TITLE}
               variant='standard'

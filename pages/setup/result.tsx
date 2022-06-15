@@ -39,11 +39,10 @@ const SetupResult: NextPage = () => {
     })
   }
 
-  const computerResult = computerValue !== 'other' ? computerValue : computerTextFieldValue
-  const whereStopResult = whereStopValue !== 'other' ? whereStopValue : whereStopTextFieldValue
+  const computerResult = computerValue !== 'その他' ? computerValue : computerTextFieldValue
+  const whereStopResult = whereStopValue !== 'その他' ? whereStopValue : whereStopTextFieldValue
 
-  const resultMessage = `【${COMPUTER_TITLE}】\n${computerResult}\n\n【${MICON_TITLE}】\n${miconValue}\n\n【${LIBRARY_TITLE}】\n${libraryValue}\n\n【${ARDUINO_TITLE}】\n${arduinoValue}\n\n【${WHERE_STOP_TITLE}】\n${whereStopResult}\n\n【${DEBUG_TEXT_FIELD_TITLE}】\n${debugTextFieldValue}\n
-  `
+  const resultMessage = `【${COMPUTER_TITLE}】\n${computerResult}\n\n【${MICON_TITLE}】\n${miconValue}\n\n【${LIBRARY_TITLE}】\n${libraryValue}\n\n【${ARDUINO_TITLE}】\n${arduinoValue}\n\n【${WHERE_STOP_TITLE}】\n${whereStopResult}\n\n【${DEBUG_TEXT_FIELD_TITLE}】\n${debugTextFieldValue}`
 
   const [openTip, setOpenTip] = useState(false)
 
