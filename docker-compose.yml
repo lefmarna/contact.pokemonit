@@ -1,10 +1,5 @@
 version: '3.9'
 
-volumes:
-  node_modules:
-  # gitconfig:
-  #   name: gitconfig
-
 services:
   node:
     build:
@@ -15,11 +10,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      # マウント
       - .:/contact.pokemonit
-      - ~/.ssh:/root/.ssh
-      # 永続化
-      - node_modules:/contact.pokemonit/node_modules
-      # - gitconfig:/root/.gitconfig
+      - ${HOME}/.ssh:/root/.ssh
     stdin_open: true
     tty: true

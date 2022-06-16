@@ -1,41 +1,50 @@
 import { Box, FormControl, FormLabel, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { RouterButton } from '../../components/atoms/RouterButton'
 import { RadioForm } from '../../components/RadioForm'
 import {
+  ARDUINO_TITLE,
+  COMPUTER_TITLE,
+  DEBUG_TEXT_FIELD_TITLE,
+  LIBRARY_TITLE,
+  MICON_TITLE,
+  WHERE_STOP_TITLE,
+} from '../../constants/setup'
+import {
   arduinoState,
   computerState,
-  computerTextFieldState,
+  computerTextFieldValueState,
+  debugTextFieldState,
   libraryState,
   miconState,
+  whereStopState,
+  whereStopTextFieldState,
 } from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
   // 使われているPCの種類はなんですか？
-  const computerTitle = '使われているPCの種類はなんですか？'
   const computerItems = [
-    { value: 'mac', label: 'Mac' },
-    { value: 'windows', label: 'Windows' },
-    { value: 'other', label: 'その他' },
+    { value: 'Mac', label: 'Mac' },
+    { value: 'Windows', label: 'Windows' },
+    { value: 'その他', label: 'その他' },
   ]
   const [computerValue, setComputerValue] = useRecoilState(computerState)
-  const [computerTextField, setComputerTextField] = useRecoilState(computerTextFieldState)
+  const [computerTextFieldValue, setComputerTextFieldValue] = useRecoilState(computerTextFieldValueState)
   const onChangeComputerValue = (e: ChangeEvent<HTMLInputElement>) => {
     setComputerValue(e.target.value)
   }
-  const onChangeComputerTextField = (e: ChangeEvent<HTMLInputElement>) => {
-    setComputerTextField(e.target.value)
+  const onChangeComputerTextFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setComputerTextFieldValue(e.target.value)
   }
 
   // Arduino Leonardo（マイコン）はブログ内で紹介しているものを使われていますか？
-  const miconTitle = 'Arduino Leonardo（マイコン）はブログ内で紹介しているものを使われていますか？'
   const miconItems = [
-    { value: 'blog', label: 'はい' },
-    { value: 'other', label: 'いいえ' },
+    { value: 'はい', label: 'はい' },
+    { value: 'いいえ', label: 'いいえ' },
   ]
   const [miconValue, setMiconValue] = useRecoilState(miconState)
   const onChangeMiconValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +52,6 @@ const Setup: NextPage = () => {
   }
 
   // 使われているライブラリはどれですか？
-  const libraryTitle = '使われているライブラリはどちらですか？'
   const libraryItems = [
     { value: 'NintendoSwitchControlLibrary', label: 'NintendoSwitchControlLibrary' },
     { value: 'NintendoSwitchControll', label: 'NintendoSwitchControll' },
@@ -53,7 +61,7 @@ const Setup: NextPage = () => {
     setLibraryValue(e.target.value)
   }
 
-  // 使われているArduino IDEのバージョンを教えてください。
+  // Arduino IDEのバージョンを教えてください。
   const [arduinoValue, setArduinoValue] = useRecoilState(arduinoState)
   const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
     setArduinoValue(e.target.value)
@@ -61,65 +69,69 @@ const Setup: NextPage = () => {
   const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
 
   // どこで止まっていますか？
-  const whereStopTitle = 'どこで止まっていますか？'
   const whereStopItems = [
-    { value: 'micon', label: 'マイコンがPCに認識されない' },
-    { value: 'boards', label: 'boards.txtの編集ができない' },
-    { value: 'error', label: 'コードの書き込み時にエラーが出る' },
-    { value: 'noWork', label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない' },
-    { value: 'other', label: 'その他' },
+    { value: 'マイコンがPCに認識されない', label: 'マイコンがPCに認識されない' },
+    { value: 'boards.txtの編集ができない', label: 'boards.txtの編集ができない' },
+    { value: 'コードの書き込み時にエラーが出る', label: 'コードの書き込み時にエラーが出る' },
+    {
+      value: 'コードを書き込んだマイコンをSwitchに接続しても動作しない',
+      label: 'コードを書き込んだマイコンをSwitchに接続しても動作しない',
+    },
+    { value: 'その他', label: 'その他' },
   ]
-  const [whereStopValue, setWhereStopValue] = useState('')
+  const [whereStopValue, setWhereStopValue] = useRecoilState(whereStopState)
   const onWhereStopValue = (e: ChangeEvent<HTMLInputElement>) => {
     setWhereStopValue(e.target.value)
   }
-  const [whereStopTextField, setWhereStopTextField] = useState('')
+  const [whereStopTextFieldValue, setWhereStopTextFieldValue] = useRecoilState(whereStopTextFieldState)
   const onChangeWhereStopTextField = (e: ChangeEvent<HTMLInputElement>) => {
-    setWhereStopTextField(e.target.value)
+    setWhereStopTextFieldValue(e.target.value)
   }
 
   // どこまでの動作を確認できているかを具体的に教えてください
-  const [debugTextField, setDebugTextField] = useState('')
+  const [debugTextFieldValue, setDebugTextFieldValue] = useRecoilState(debugTextFieldState)
   const onChangeDebugTextField = (e: ChangeEvent<HTMLInputElement>) => {
-    setDebugTextField(e.target.value)
+    setDebugTextFieldValue(e.target.value)
   }
 
   const disabled =
     computerValue === '' ||
-    (computerValue === 'other' && computerTextField === '') ||
+    (computerValue === 'その他' && computerTextFieldValue === '') ||
     miconValue === '' ||
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
     whereStopValue === '' ||
-    (whereStopValue === 'other' && whereStopTextField === '') ||
-    debugTextField === ''
+    (whereStopValue === 'その他' && whereStopTextFieldValue === '') ||
+    debugTextFieldValue === ''
+
   const router = useRouter()
+
   const onClickRouterBack = () => {
     router.back()
   }
 
   const onClickRouterPush = () => {
-    console.log('リンク先はまだ作れていません')
+    router.push('/setup/result')
   }
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <RadioForm formLabel={computerTitle} items={computerItems} handleChange={onChangeComputerValue}>
-          {computerValue === 'other' && (
+        <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} handleChange={onChangeComputerValue}>
+          {computerValue === 'その他' && (
             <TextField
               label='使われているPCを記入してください'
               variant='standard'
-              value={computerTextField}
-              onChange={onChangeComputerTextField}
+              value={computerTextFieldValue}
+              onChange={onChangeComputerTextFieldValue}
             />
           )}
         </RadioForm>
-        <RadioForm formLabel={miconTitle} items={miconItems} handleChange={onChangeMiconValue} />
-        <RadioForm formLabel={libraryTitle} items={libraryItems} handleChange={onChangeLibraryValue} />
+        <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
+        <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
         <FormControl sx={{ width: 1, mb: 4 }}>
           <FormLabel id='radio-buttons-group-label' filled required>
-            Arduino IDEのバージョンを教えてください
+            {ARDUINO_TITLE}
           </FormLabel>
           <TextField
             variant='standard'
@@ -129,27 +141,27 @@ const Setup: NextPage = () => {
             sx={{ mt: 1 }}
           />
         </FormControl>
-        <RadioForm formLabel={whereStopTitle} items={whereStopItems} handleChange={onWhereStopValue}>
-          {whereStopValue === 'other' && (
+        <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
+          {whereStopValue === 'その他' && (
             <TextField
-              label='どこで止まっているのかを詳細に記載してください'
+              label={WHERE_STOP_TITLE}
               variant='standard'
-              value={whereStopTextField}
+              value={whereStopTextFieldValue}
               onChange={onChangeWhereStopTextField}
             />
           )}
         </RadioForm>
         <FormControl sx={{ width: 1, mb: 4 }}>
           <FormLabel id='radio-buttons-group-label' filled required>
-            どこまでの動作を確認できているかを具体的に教えてください
+            {DEBUG_TEXT_FIELD_TITLE}
           </FormLabel>
-          <TextField value={debugTextField} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
+          <TextField value={debugTextFieldValue} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
         </FormControl>
         <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
-          <RouterButton onClick={onClickRouterBack} variant='outlined' color='inherit'>
+          <RouterButton onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
             戻る
           </RouterButton>
-          <RouterButton onClick={onClickRouterPush} variant='contained' disabled={disabled}>
+          <RouterButton onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
             次へ
           </RouterButton>
         </Box>

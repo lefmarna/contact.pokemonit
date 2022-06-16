@@ -5,13 +5,14 @@ type Props = {
   onClick: () => void
   variant?: 'contained' | 'outlined' | 'text'
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
+  sx?: Object
   disabled?: boolean
 }
 
 export const RouterButton = (props: Props) => {
-  const { children, onClick, variant = 'text', color = 'primary', disabled = false } = props
+  const { children, onClick, variant = 'text', color = 'primary', sx = {}, disabled = false } = props
   return (
-    <Button onClick={onClick} variant={variant} color={color} sx={{ width: 1 }} disabled={disabled}>
+    <Button onClick={onClick} variant={variant} color={color} sx={sx} disabled={disabled}>
       {children}
     </Button>
   )

@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <AppBar position='static'>
         <Toolbar>
-          <Typography variant='h6' noWrap component='div' sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+          <Typography variant='h6' noWrap component='div' sx={{ flexGrow: 1, display: { sm: 'block' } }}>
             ポケモニット - 質問フォーム
           </Typography>
         </Toolbar>

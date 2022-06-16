@@ -5,8 +5,8 @@ export const computerState = atom({
   default: '',
 })
 
-export const computerTextFieldState = atom({
-  key: 'computerTextFieldState',
+export const computerTextFieldValueState = atom({
+  key: 'computerTextFieldValueState',
   default: '',
 })
 
@@ -22,5 +22,20 @@ export const libraryState = atom({
 
 export const arduinoState = atom({
   key: 'arduinoState',
+  default: '',
+})
+
+export const whereStopState = atom({
+  key: 'whereStopState',
+  default: '',
+})
+
+export const whereStopTextFieldState = atom({
+  key: 'whereStopTextFieldState',
+  default: '',
+})
+
+export const debugTextFieldState = atom({
+  key: 'debugTextFieldState',
   default: '',
 })
