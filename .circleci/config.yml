@@ -1,0 +1,108 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:16.15.1
+
+jobs:
+  lint:
+    executor:
+      name: node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - next-yarn-{{ checksum "yarn.lock" }}
+            - next-yarn-
+      - run:
+          name: 'yarn install'
+          command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: next-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: 'eslint'
+          command: yarn eslint
+      - run:
+          name: 'stylelint'
+          command: yarn stylelint
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  build:
+    executor:
+      name: node
+    steps:
+      - attach_workspace:
+          at: .
+      - when:
+          condition:
+            equal: ['master', <<pipeline.git.branch>>]
+          steps:
+            - run:
+                name: 'build'
+                command: yarn build
+      - unless:
+          condition:
+            equal: ['master', <<pipeline.git.branch>>]
+          steps:
+            - run:
+                name: 'delete SEO files'
+                command: rm -f ./public/robots.txt ./public/sitemap.xml
+            - run:
+                name: 'create robots.txt'
+                command: "echo 'User-agent: *\nDisallow: /' > ./public/robots.txt"
+            - run:
+                name: 'build'
+                command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy_prod:
+    executor:
+      name: node
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: 'deploy production'
+          command: ls
+
+  deploy_dev:
+    executor:
+      name: node
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: 'deploy develop'
+          command: ls
+
+workflows:
+  version: 2
+  lint_build_deploy:
+    jobs:
+      - lint
+      - build:
+          requires:
+            - lint
+      - deploy_prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - develop
