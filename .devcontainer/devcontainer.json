@@ -105,11 +105,13 @@
     "donjayamanne.githistory",
     "dsznajder.es7-react-js-snippets",
     "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
     "stylelint.vscode-stylelint",
-    "yzhang.markdown-all-in-one",
-    "VisualStudioExptTeam.vscodeintellicode"
+    "VisualStudioExptTeam.vscodeintellicode",
+    "wmaurer.change-case",
+    "yzhang.markdown-all-in-one"
   ]
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
