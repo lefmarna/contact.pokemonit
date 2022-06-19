@@ -1,11 +1,12 @@
-import { Button } from '@mui/material'
+import { Theme } from '@emotion/react'
+import { Button, SxProps } from '@mui/material'
 
 type Props = {
   children: string
   onClick: () => void
   variant?: 'contained' | 'outlined' | 'text'
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
-  sx?: Object
+  sx?: SxProps<Theme>
   disabled?: boolean
 }
 
