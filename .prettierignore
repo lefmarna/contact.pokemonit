@@ -1,8 +1,7 @@
-.cache/
 .github/pull_request_template.md
+.next/
 .eslintrc.json
 .stylelintrc.json
-commitlint.config.js
 cspell.json
 package.json
 Makefile
