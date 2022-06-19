@@ -12,7 +12,7 @@ import {
   LIBRARY_TITLE,
   MICON_TITLE,
   WHERE_STOP_TITLE,
-} from '../../src/constants/setup'
+} from '../../constants/setup'
 import {
   arduinoState,
   computerState,
@@ -22,7 +22,7 @@ import {
   miconState,
   whereStopState,
   whereStopTextFieldState,
-} from '../../src/store/setupState'
+} from '../../store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {

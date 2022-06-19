@@ -8,7 +8,7 @@ import {
   LIBRARY_TITLE,
   MICON_TITLE,
   WHERE_STOP_TITLE,
-} from '../../src/constants/setup'
+} from '../../constants/setup'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import {
   arduinoState,
@@ -19,10 +19,10 @@ import {
   miconState,
   whereStopState,
   whereStopTextFieldState,
-} from '../../src/store/setupState'
+} from '../../store/setupState'
 import styles from '../../styles/Home.module.css'
 import { useState } from 'react'
-import { useClipboard } from '../../src/hooks/useClipboard'
+import { useClipboard } from '../../hooks/useClipboard'
 
 const SetupResult: NextPage = () => {
   const { writeToClipboard } = useClipboard()

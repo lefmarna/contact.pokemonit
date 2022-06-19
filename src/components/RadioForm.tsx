@@ -1,5 +1,5 @@
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
-import { RadioType } from '../types'
+import { RadioType } from '../../types'
 
 export const RadioForm = (props: RadioType) => {
   const { children, formLabel, items, handleChange } = props
