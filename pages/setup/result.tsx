@@ -8,7 +8,7 @@ import {
   LIBRARY_TITLE,
   MICON_TITLE,
   WHERE_STOP_TITLE,
-} from '../../constants/setup'
+} from '../../src/constants/setup'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import {
   arduinoState,
@@ -22,8 +22,11 @@ import {
 } from '../../src/store/setupState'
 import styles from '../../styles/Home.module.css'
 import { useState } from 'react'
+import { useClipboard } from '../../src/hooks/useClipboard'
 
 const SetupResult: NextPage = () => {
+  const { writeToClipboard } = useClipboard()
+
   const computerValue = useRecoilValue(computerState)
   const computerTextFieldValue = useRecoilValue(computerTextFieldValueState)
   const miconValue = useRecoilValue(miconState)
@@ -32,12 +35,6 @@ const SetupResult: NextPage = () => {
   const whereStopValue = useRecoilValue(whereStopState)
   const whereStopTextFieldValue = useRecoilValue(whereStopTextFieldState)
   const debugTextFieldValue = useRecoilValue(debugTextFieldState)
-
-  const writeToClipboard = (clipText: string): void => {
-    navigator.clipboard.writeText(clipText).catch((e) => {
-      console.error(e)
-    })
-  }
 
   const computerResult = computerValue !== 'その他' ? computerValue : computerTextFieldValue
   const whereStopResult = whereStopValue !== 'その他' ? whereStopValue : whereStopTextFieldValue

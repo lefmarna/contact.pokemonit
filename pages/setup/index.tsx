@@ -12,7 +12,7 @@ import {
   LIBRARY_TITLE,
   MICON_TITLE,
   WHERE_STOP_TITLE,
-} from '../../constants/setup'
+} from '../../src/constants/setup'
 import {
   arduinoState,
   computerState,
