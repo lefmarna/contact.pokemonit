@@ -15,6 +15,5 @@ services:
     volumes:
       - .:/contact.pokemonit
       - node_modules:/contact.pokemonit/node_modules
-      - ${HOME}/.ssh:/root/.ssh
     stdin_open: true
     tty: true
