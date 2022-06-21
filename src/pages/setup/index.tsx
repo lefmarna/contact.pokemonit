@@ -22,7 +22,7 @@ import {
   miconState,
   whereStopState,
   whereStopTextFieldState,
-} from '../../src/store/setupState'
+} from '../../store/setupState'
 import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {

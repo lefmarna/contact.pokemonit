@@ -5,7 +5,8 @@ docker-build:
 .PHONY: init
 init:
 	@make docker-build
-	@make install
+	@make up
+	@make yarn install
 
 .PHONY: setup
 setup:
@@ -38,9 +39,9 @@ destroy:
 ps:
 	docker-compose ps
 
-.PHONY: install
-install:
-	docker-compose exec node npm install
+.PHONY: yarn install
+yarn install:
+	docker-compose exec node yarn install
 
 .PHONY: node
 node:
