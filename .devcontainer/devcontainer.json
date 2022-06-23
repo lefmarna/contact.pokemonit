@@ -102,6 +102,7 @@
   "extensions": [
     "aaron-bond.better-comments",
     "christian-kohler.path-intellisense",
+    "dbaeumer.vscode-eslint",
     "donjayamanne.githistory",
     "dsznajder.es7-react-js-snippets",
     "eamodio.gitlens",
