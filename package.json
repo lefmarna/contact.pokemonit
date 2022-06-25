@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:deploy": "if [ '${APP_ENV}' != production ]; then rm -rf ./public/robots.txt ./public/sitemap.xml; fi && next build",
     "start": "next start",
     "lint": "next lint",
     "eslint": "eslint './src/**/*.{js,jsx,ts,tsx}'",
