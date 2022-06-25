@@ -130,7 +130,7 @@ const Setup: NextPage = () => {
         <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
         <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
         <FormControl sx={{ width: 1, mb: 4 }}>
-          <FormLabel id='radio-buttons-group-label' filled required>
+          <FormLabel filled required>
             {ARDUINO_TITLE}
           </FormLabel>
           <TextField
@@ -152,7 +152,7 @@ const Setup: NextPage = () => {
           )}
         </RadioForm>
         <FormControl sx={{ width: 1, mb: 4 }}>
-          <FormLabel id='radio-buttons-group-label' filled required>
+          <FormLabel filled required>
             {DEBUG_TEXT_FIELD_TITLE}
           </FormLabel>
           <TextField value={debugTextFieldValue} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
