@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { RecoilRoot } from 'recoil'
+import styles from '../styles/Home.module.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Toolbar>
       </AppBar>
       <RecoilRoot>
-        <Component {...pageProps} />
+        <div className={styles.container}>
+          <main className={styles.main}>
+            <Component {...pageProps} />
+          </main>
+        </div>
       </RecoilRoot>
     </>
   )
