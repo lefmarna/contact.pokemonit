@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { RecoilRoot } from 'recoil'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>

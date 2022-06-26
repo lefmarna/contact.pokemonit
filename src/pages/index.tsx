@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
 import { FormActions } from '../components/molecules/FormActions'
-import { RadioForm } from '../components/RadioForm'
+import { RadioForm } from '../components/molecules/RadioForm'
 
 const Home: NextPage = () => {
   const formLabel = '質問の種類を選択してください。'

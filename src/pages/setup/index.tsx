@@ -1,10 +1,11 @@
-import { Button, FormControl, FormLabel, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { FormActions } from '../../components/molecules/FormActions'
-import { RadioForm } from '../../components/RadioForm'
+import { RadioForm } from '../../components/molecules/RadioForm'
+import TextFieldForm from '../../components/molecules/TextFieldForm'
 import {
   ARDUINO_TITLE,
   COMPUTER_TITLE,
@@ -62,7 +63,7 @@ const Setup: NextPage = () => {
 
   // Arduino IDEのバージョンを教えてください。
   const [arduinoValue, setArduinoValue] = useRecoilState(arduinoState)
-  const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setArduinoValue(e.target.value)
   }
   const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
@@ -127,18 +128,13 @@ const Setup: NextPage = () => {
       </RadioForm>
       <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
       <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
-      <FormControl sx={{ width: 1, mb: 4 }}>
-        <FormLabel filled required>
-          {ARDUINO_TITLE}
-        </FormLabel>
-        <TextField
-          variant='standard'
-          value={arduinoValue}
-          onChange={onChangeArduinoValue}
-          placeholder='1.8.2'
-          sx={{ mt: 1 }}
-        />
-      </FormControl>
+      <TextFieldForm
+        formLabel={ARDUINO_TITLE}
+        variant='standard'
+        value={arduinoValue}
+        onChange={onChangeArduinoValue}
+        placeholder='1.8.2'
+      />
       <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
         {whereStopValue === 'その他' && (
           <TextField
@@ -149,12 +145,13 @@ const Setup: NextPage = () => {
           />
         )}
       </RadioForm>
-      <FormControl sx={{ width: 1, mb: 4 }}>
-        <FormLabel filled required>
-          {DEBUG_TEXT_FIELD_TITLE}
-        </FormLabel>
-        <TextField value={debugTextFieldValue} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
-      </FormControl>
+      <TextFieldForm
+        formLabel={DEBUG_TEXT_FIELD_TITLE}
+        value={debugTextFieldValue}
+        onChange={onChangeDebugTextField}
+        multiline={true}
+        rows={4}
+      />
       <FormActions>
         <Button onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
           戻る
