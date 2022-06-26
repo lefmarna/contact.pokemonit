@@ -49,19 +49,19 @@ node:
 
 .PHONY: dev
 dev:
-	docker-compose exec node npm run dev
+	docker-compose exec node yarn dev
 
 .PHONY: build
 build:
-	docker-compose exec node npm run build
+	docker-compose exec node yarn build
 
 .PHONY: start
 start:
-	docker-compose exec node npm run start
+	docker-compose exec node yarn start
 
 .PHONY: lint
 lint:
-	docker-compose exec node npm run lint
+	docker-compose exec node yarn lint
 
 .PHONY: open
 open:
