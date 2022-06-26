@@ -1,10 +1,11 @@
-import { Box, FormControl, FormLabel, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
-import { RouterButton } from '../../components/atoms/RouterButton'
-import { RadioForm } from '../../components/RadioForm'
+import { FormActions } from '../../components/molecules/FormActions'
+import { RadioForm } from '../../components/molecules/RadioForm'
+import TextFieldForm from '../../components/molecules/TextFieldForm'
 import {
   ARDUINO_TITLE,
   COMPUTER_TITLE,
@@ -23,7 +24,6 @@ import {
   whereStopState,
   whereStopTextFieldState,
 } from '../../store/setupState'
-import styles from '../../styles/Home.module.css'
 
 const Setup: NextPage = () => {
   // 使われているPCの種類はなんですか？
@@ -63,7 +63,7 @@ const Setup: NextPage = () => {
 
   // Arduino IDEのバージョンを教えてください。
   const [arduinoValue, setArduinoValue] = useRecoilState(arduinoState)
-  const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setArduinoValue(e.target.value)
   }
   const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
@@ -115,58 +115,52 @@ const Setup: NextPage = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} handleChange={onChangeComputerValue}>
-          {computerValue === 'その他' && (
-            <TextField
-              label='使われているPCを記入してください'
-              variant='standard'
-              value={computerTextFieldValue}
-              onChange={onChangeComputerTextFieldValue}
-            />
-          )}
-        </RadioForm>
-        <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
-        <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
-        <FormControl sx={{ width: 1, mb: 4 }}>
-          <FormLabel id='radio-buttons-group-label' filled required>
-            {ARDUINO_TITLE}
-          </FormLabel>
+    <>
+      <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} handleChange={onChangeComputerValue}>
+        {computerValue === 'その他' && (
           <TextField
+            label='使われているPCを記入してください'
             variant='standard'
-            value={arduinoValue}
-            onChange={onChangeArduinoValue}
-            placeholder='1.8.2'
-            sx={{ mt: 1 }}
+            value={computerTextFieldValue}
+            onChange={onChangeComputerTextFieldValue}
           />
-        </FormControl>
-        <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
-          {whereStopValue === 'その他' && (
-            <TextField
-              label={WHERE_STOP_TITLE}
-              variant='standard'
-              value={whereStopTextFieldValue}
-              onChange={onChangeWhereStopTextField}
-            />
-          )}
-        </RadioForm>
-        <FormControl sx={{ width: 1, mb: 4 }}>
-          <FormLabel id='radio-buttons-group-label' filled required>
-            {DEBUG_TEXT_FIELD_TITLE}
-          </FormLabel>
-          <TextField value={debugTextFieldValue} onChange={onChangeDebugTextField} multiline rows={4} sx={{ mt: 1 }} />
-        </FormControl>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: 1, mt: 3 }}>
-          <RouterButton onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
-            戻る
-          </RouterButton>
-          <RouterButton onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
-            次へ
-          </RouterButton>
-        </Box>
-      </main>
-    </div>
+        )}
+      </RadioForm>
+      <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
+      <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
+      <TextFieldForm
+        formLabel={ARDUINO_TITLE}
+        variant='standard'
+        value={arduinoValue}
+        onChange={onChangeArduinoValue}
+        placeholder='1.8.2'
+      />
+      <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
+        {whereStopValue === 'その他' && (
+          <TextField
+            label={WHERE_STOP_TITLE}
+            variant='standard'
+            value={whereStopTextFieldValue}
+            onChange={onChangeWhereStopTextField}
+          />
+        )}
+      </RadioForm>
+      <TextFieldForm
+        formLabel={DEBUG_TEXT_FIELD_TITLE}
+        value={debugTextFieldValue}
+        onChange={onChangeDebugTextField}
+        multiline={true}
+        rows={4}
+      />
+      <FormActions>
+        <Button onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
+          戻る
+        </Button>
+        <Button onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
+          次へ
+        </Button>
+      </FormActions>
+    </>
   )
 }
 

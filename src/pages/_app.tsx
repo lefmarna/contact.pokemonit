@@ -1,10 +1,11 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import styled from '@emotion/styled'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { RecoilRoot } from 'recoil'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
@@ -19,11 +20,28 @@ function MyApp({ Component, pageProps }: AppProps) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <RecoilRoot>
-        <Component {...pageProps} />
-      </RecoilRoot>
+      <StyledContainer>
+        <StyledMain>
+          <RecoilRoot>
+            <Component {...pageProps} />
+          </RecoilRoot>
+        </StyledMain>
+      </StyledContainer>
     </>
   )
 }
 
 export default MyApp
+
+const StyledContainer = styled.div`
+  padding: 0 2rem;
+`
+
+const StyledMain = styled.main`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+`

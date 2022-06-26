@@ -20,9 +20,8 @@ import {
   whereStopState,
   whereStopTextFieldState,
 } from '../../store/setupState'
-import styles from '../../styles/Home.module.css'
-import { useState } from 'react'
 import { useClipboard } from '../../hooks/useClipboard'
+import { useState } from 'react'
 
 const SetupResult: NextPage = () => {
   const { writeToClipboard } = useClipboard()
@@ -53,37 +52,35 @@ const SetupResult: NextPage = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <OutlinedInput
-          type='text'
-          value={resultMessage}
-          multiline
-          fullWidth
-          readOnly
-          endAdornment={
-            <Tooltip
-              arrow
-              open={openTip}
-              onClose={handleCloseTip}
-              disableHoverListener
-              placement='top'
-              title='コピーしました'
+    <>
+      <OutlinedInput
+        type='text'
+        value={resultMessage}
+        multiline
+        fullWidth
+        readOnly
+        endAdornment={
+          <Tooltip
+            arrow
+            open={openTip}
+            onClose={handleCloseTip}
+            disableHoverListener
+            placement='top'
+            title='コピーしました'
+          >
+            <IconButton
+              onClick={handleClickButton}
+              edge='start'
+              sx={{ mx: 'auto', mb: 'auto', py: 0 }}
+              size='large'
+              disabled={resultMessage === ''}
             >
-              <IconButton
-                onClick={handleClickButton}
-                edge='start'
-                sx={{ mx: 'auto', mb: 'auto', py: 0 }}
-                size='large'
-                disabled={resultMessage === ''}
-              >
-                <AssignmentIcon />
-              </IconButton>
-            </Tooltip>
-          }
-        />
-      </main>
-    </div>
+              <AssignmentIcon />
+            </IconButton>
+          </Tooltip>
+        }
+      />
+    </>
   )
 }
 
