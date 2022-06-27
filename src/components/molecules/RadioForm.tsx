@@ -2,7 +2,7 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mu
 import { RadioType } from '../../../types'
 
 export const RadioForm = (props: RadioType) => {
-  const { children, formLabel, items, handleChange } = props
+  const { children, formLabel, items, onChange } = props
 
   return (
     <FormControl sx={{ width: 1, mb: 4 }}>
@@ -13,7 +13,7 @@ export const RadioForm = (props: RadioType) => {
         {items.map((item) => (
           <FormControlLabel
             value={item.value}
-            control={<Radio onChange={handleChange} />}
+            control={<Radio onChange={onChange} />}
             label={item.label}
             key={item.value}
           />

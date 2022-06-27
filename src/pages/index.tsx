@@ -34,7 +34,7 @@ const Home: NextPage = () => {
   }
   return (
     <>
-      <RadioForm formLabel={formLabel} items={items} handleChange={handleChange} />
+      <RadioForm formLabel={formLabel} items={items} onChange={handleChange} />
       <FormActions>
         <Button onClick={onClickRouterPush} variant='contained' sx={{ width: 1 }} disabled={value === ''}>
           次へ
