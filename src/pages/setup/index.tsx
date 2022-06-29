@@ -5,6 +5,7 @@ import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { FormActions } from '../../components/molecules/FormActions'
 import { RadioForm } from '../../components/molecules/RadioForm'
+import RouterBackButton from '../../components/molecules/RouterBackButton'
 import TextFieldForm from '../../components/molecules/TextFieldForm'
 import {
   ARDUINO_TITLE,
@@ -153,9 +154,7 @@ const Setup: NextPage = () => {
         rows={4}
       />
       <FormActions>
-        <Button onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
-          戻る
-        </Button>
+        <RouterBackButton />
         <Button onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
           次へ
         </Button>
