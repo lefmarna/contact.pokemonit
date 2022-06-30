@@ -5,6 +5,7 @@ import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { FormActions } from '../../components/molecules/FormActions'
 import { RadioForm } from '../../components/molecules/RadioForm'
+import RouterBackButton from '../../components/molecules/RouterBackButton'
 import TextFieldForm from '../../components/molecules/TextFieldForm'
 import {
   ARDUINO_TITLE,
@@ -106,17 +107,13 @@ const Setup: NextPage = () => {
 
   const router = useRouter()
 
-  const onClickRouterBack = () => {
-    router.back()
-  }
-
   const onClickRouterPush = () => {
     router.push('/setup/result')
   }
 
   return (
     <>
-      <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} handleChange={onChangeComputerValue}>
+      <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} onChange={onChangeComputerValue}>
         {computerValue === 'その他' && (
           <TextField
             label='使われているPCを記入してください'
@@ -126,8 +123,8 @@ const Setup: NextPage = () => {
           />
         )}
       </RadioForm>
-      <RadioForm formLabel={MICON_TITLE} items={miconItems} handleChange={onChangeMiconValue} />
-      <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} handleChange={onChangeLibraryValue} />
+      <RadioForm formLabel={MICON_TITLE} items={miconItems} onChange={onChangeMiconValue} />
+      <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} onChange={onChangeLibraryValue} />
       <TextFieldForm
         formLabel={ARDUINO_TITLE}
         variant='standard'
@@ -135,7 +132,7 @@ const Setup: NextPage = () => {
         onChange={onChangeArduinoValue}
         placeholder='1.8.2'
       />
-      <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} handleChange={onWhereStopValue}>
+      <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} onChange={onWhereStopValue}>
         {whereStopValue === 'その他' && (
           <TextField
             label={WHERE_STOP_TITLE}
@@ -153,9 +150,7 @@ const Setup: NextPage = () => {
         rows={4}
       />
       <FormActions>
-        <Button onClick={onClickRouterBack} variant='outlined' sx={{ width: 1 }} color='inherit'>
-          戻る
-        </Button>
+        <RouterBackButton />
         <Button onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
           次へ
         </Button>
