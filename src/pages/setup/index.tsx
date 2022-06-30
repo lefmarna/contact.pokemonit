@@ -107,10 +107,6 @@ const Setup: NextPage = () => {
 
   const router = useRouter()
 
-  const onClickRouterBack = () => {
-    router.back()
-  }
-
   const onClickRouterPush = () => {
     router.push('/setup/result')
   }
