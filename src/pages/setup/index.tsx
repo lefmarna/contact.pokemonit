@@ -7,6 +7,7 @@ import { FormActions } from '../../components/molecules/FormActions'
 import { RadioForm } from '../../components/molecules/RadioForm'
 import RouterBackButton from '../../components/molecules/RouterBackButton'
 import TextFieldForm from '../../components/molecules/TextFieldForm'
+import { versionRegexp } from '../../constants/regexp'
 import {
   ARDUINO_TITLE,
   COMPUTER_TITLE,
@@ -67,7 +68,6 @@ const Setup: NextPage = () => {
   const onChangeArduinoValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setArduinoValue(e.target.value)
   }
-  const versionRegexp = /^\d{1,2}.\d{1,2}.\d{1,3}$/
 
   // どこで止まっていますか？
   const whereStopItems = [
@@ -131,6 +131,7 @@ const Setup: NextPage = () => {
         value={arduinoValue}
         onChange={onChangeArduinoValue}
         placeholder='1.8.2'
+        required={true}
       />
       <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} onChange={onWhereStopValue}>
         {whereStopValue === 'その他' && (
@@ -147,12 +148,13 @@ const Setup: NextPage = () => {
         value={debugTextFieldValue}
         onChange={onChangeDebugTextField}
         multiline={true}
+        required={true}
         rows={4}
       />
       <FormActions>
         <RouterBackButton />
         <Button onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
-          次へ
+          確認する
         </Button>
       </FormActions>
     </>
