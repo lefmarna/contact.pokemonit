@@ -1,1 +1,6 @@
-export const CODE_TITLE = '使われているコードはどちらになりますか？'
+export const CODE_TITLE = '使われているコードはどちらになりますか？（記事のタイトルで良いです）'
+export const URL_TITLE = '参照した記事のURLを貼ってください'
+export const CHECK_LIST_TITLE = '各コードごとに「設定の確認」を設けているのですが、そちらはチェックできていますか？'
+export const WHERE_FAILED_TITLE = '具体的にどこで詰まっていますか？'
+export const WHERE_CHECKED_TITLE = 'どこまでの動作を確認できていますか？'
+export const ERROR_MESSAGES_TITLE = 'エラーメッセージが出ていれば全てを貼り付けてください'

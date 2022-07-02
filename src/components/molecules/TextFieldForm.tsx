@@ -38,7 +38,7 @@ const TextFieldForm = (props: TextFieldFormProps) => {
 
   return (
     <FormControl sx={{ width: 1, mb: 4 }}>
-      <FormLabel filled required>
+      <FormLabel filled required={required}>
         {formLabel}
       </FormLabel>
       <TextField
