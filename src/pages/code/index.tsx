@@ -175,7 +175,7 @@ const Code: NextPage = () => {
       <FormActions>
         <RouterBackButton />
         <Button onClick={onClickRouterPush} variant='contained' sx={{ ml: 2, width: 1 }} disabled={disabled}>
-          次へ
+          確認する
         </Button>
       </FormActions>
     </>
