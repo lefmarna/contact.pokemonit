@@ -1,7 +1,6 @@
-import { Button, IconButton, OutlinedInput, Tooltip } from '@mui/material'
+import { Button, OutlinedInput, Tooltip } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRecoilValue } from 'recoil'
-import AssignmentIcon from '@mui/icons-material/Assignment'
 import { useClipboard } from '../../hooks/useClipboard'
 import { useState } from 'react'
 import {
@@ -58,6 +57,9 @@ const SetupResult: NextPage = () => {
   return (
     <>
       <OutlinedInput type='text' value={resultMessage} multiline fullWidth readOnly />
+      <p>
+        スクリーンショットや動画があればより解決できる可能性が高くなります。合わせて用意していただけると非常に助かります。
+      </p>
       <FormActions>
         <RouterBackButton />
         <Tooltip

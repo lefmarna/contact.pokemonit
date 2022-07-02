@@ -1,4 +1,4 @@
-import { IconButton, OutlinedInput, Tooltip } from '@mui/material'
+import { Button, OutlinedInput, Tooltip } from '@mui/material'
 import type { NextPage } from 'next'
 import { useRecoilValue } from 'recoil'
 import {
@@ -9,7 +9,6 @@ import {
   MICON_TITLE,
   WHERE_STOP_TITLE,
 } from '../../constants/setup'
-import AssignmentIcon from '@mui/icons-material/Assignment'
 import {
   arduinoState,
   computerState,
@@ -22,6 +21,8 @@ import {
 } from '../../store/setupState'
 import { useClipboard } from '../../hooks/useClipboard'
 import { useState } from 'react'
+import { FormActions } from '../../components/molecules/FormActions'
+import RouterBackButton from '../../components/molecules/RouterBackButton'
 
 const SetupResult: NextPage = () => {
   const { writeToClipboard } = useClipboard()
@@ -53,33 +54,22 @@ const SetupResult: NextPage = () => {
 
   return (
     <>
-      <OutlinedInput
-        type='text'
-        value={resultMessage}
-        multiline
-        fullWidth
-        readOnly
-        endAdornment={
-          <Tooltip
-            arrow
-            open={openTip}
-            onClose={handleCloseTip}
-            disableHoverListener
-            placement='top'
-            title='コピーしました'
-          >
-            <IconButton
-              onClick={handleClickButton}
-              edge='start'
-              sx={{ mx: 'auto', mb: 'auto', py: 0 }}
-              size='large'
-              disabled={resultMessage === ''}
-            >
-              <AssignmentIcon />
-            </IconButton>
-          </Tooltip>
-        }
-      />
+      <OutlinedInput type='text' value={resultMessage} multiline fullWidth readOnly />
+      <FormActions>
+        <RouterBackButton />
+        <Tooltip
+          arrow
+          open={openTip}
+          onClose={handleCloseTip}
+          disableHoverListener
+          placement='top'
+          title='コピーしました'
+        >
+          <Button color='info' onClick={handleClickButton} variant='contained' sx={{ ml: 2, width: 1 }}>
+            内容をコピーする
+          </Button>
+        </Tooltip>
+      </FormActions>
     </>
   )
 }
