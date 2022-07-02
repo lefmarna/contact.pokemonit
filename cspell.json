@@ -14,7 +14,8 @@
     "devcontainer",
     "NintendoSwitchControll",
     "rscss",
-    "stylelint"
+    "stylelint",
+    "Textfield"
   ],
   "ignoreWords": [],
   "import": []

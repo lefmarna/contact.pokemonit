@@ -15,17 +15,32 @@ export const checkListState = atom({
   default: '',
 })
 
-export const whereFailedState = atom({
-  key: 'whereFailedState',
+export const whereFailedTextfieldState = atom({
+  key: 'whereFailedTextfieldState',
   default: '',
 })
 
-export const whereCheckedState = atom({
-  key: 'whereCheckedState',
+export const whereCheckedTextfieldState = atom({
+  key: 'whereCheckedTextfieldState',
   default: '',
 })
 
-export const errorMessagesTitle = atom({
-  key: 'errorMessagesTitle',
+export const errorMessagesTextfieldState = atom({
+  key: 'errorMessagesTextfieldState',
+  default: '',
+})
+
+export const switchVersionState = atom({
+  key: 'switchVersionState',
+  default: '',
+})
+
+export const gameVersionState = atom({
+  key: 'gameVersionState',
+  default: '',
+})
+
+export const noteTextFieldState = atom({
+  key: 'noteTextFieldState',
   default: '',
 })
