@@ -113,7 +113,12 @@ const Setup: NextPage = () => {
 
   return (
     <>
-      <RadioForm formLabel={COMPUTER_TITLE} items={computerItems} onChange={onChangeComputerValue}>
+      <RadioForm
+        formLabel={COMPUTER_TITLE}
+        items={computerItems}
+        value={computerValue}
+        onChange={onChangeComputerValue}
+      >
         {computerValue === 'その他' && (
           <TextField
             label='使われているPCを記入してください'
@@ -123,8 +128,8 @@ const Setup: NextPage = () => {
           />
         )}
       </RadioForm>
-      <RadioForm formLabel={MICON_TITLE} items={miconItems} onChange={onChangeMiconValue} />
-      <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} onChange={onChangeLibraryValue} />
+      <RadioForm formLabel={MICON_TITLE} items={miconItems} value={miconValue} onChange={onChangeMiconValue} />
+      <RadioForm formLabel={LIBRARY_TITLE} items={libraryItems} value={libraryValue} onChange={onChangeLibraryValue} />
       <TextFieldForm
         formLabel={ARDUINO_TITLE}
         variant='standard'
@@ -133,7 +138,7 @@ const Setup: NextPage = () => {
         placeholder='1.8.2'
         required={true}
       />
-      <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} onChange={onWhereStopValue}>
+      <RadioForm formLabel={WHERE_STOP_TITLE} items={whereStopItems} value={whereStopValue} onChange={onWhereStopValue}>
         {whereStopValue === 'その他' && (
           <TextField
             label={WHERE_STOP_TITLE}

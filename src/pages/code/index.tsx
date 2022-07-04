@@ -124,7 +124,12 @@ const Code: NextPage = () => {
         placeholder='https://pokemonit.com/○○○'
         required={true}
       />
-      <RadioForm formLabel={CHECK_LIST_TITLE} items={checkListItems} onChange={onChangeCheckListValue} />
+      <RadioForm
+        formLabel={CHECK_LIST_TITLE}
+        items={checkListItems}
+        value={checkListValue}
+        onChange={onChangeCheckListValue}
+      />
       <TextFieldForm
         formLabel={SWITCH_VERSION_TITLE}
         variant='standard'
