@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const items = [
     { value: 'setup', label: 'マイコンの導入方法について' },
     { value: 'code', label: 'コードがうまく動かない' },
-    { value: 'other', label: 'その他' },
+    // { value: 'other', label: 'その他' },
   ]
 
   const [value, setValue] = useState('')

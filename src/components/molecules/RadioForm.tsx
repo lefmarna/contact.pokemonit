@@ -5,7 +5,7 @@ export const RadioForm = (props: RadioType) => {
   const { children, formLabel, items, onChange } = props
 
   return (
-    <FormControl sx={{ width: 1, mb: 4 }}>
+    <FormControl sx={{ width: 1, mb: 5 }}>
       <FormLabel filled required>
         {formLabel}
       </FormLabel>
