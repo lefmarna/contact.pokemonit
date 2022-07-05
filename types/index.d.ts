@@ -5,6 +5,7 @@ export type RadioType = {
   children?: ReactNode
   formLabel: string
   items: RadioItem[]
+  value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 

@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   const items = [
     { value: 'setup', label: 'マイコンの導入方法について' },
     { value: 'code', label: 'コードがうまく動かない' },
-    { value: 'other', label: 'その他' },
+    // { value: 'other', label: 'その他' },
   ]
 
   const [value, setValue] = useState('')
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
   }
   return (
     <>
-      <RadioForm formLabel={formLabel} items={items} onChange={handleChange} />
+      <RadioForm formLabel={formLabel} items={items} value={value} onChange={handleChange} />
       <FormActions>
         <Button onClick={onClickRouterPush} variant='contained' sx={{ width: 1 }} disabled={value === ''}>
           次へ
