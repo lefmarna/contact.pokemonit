@@ -15,5 +15,7 @@ services:
     volumes:
       - .:/contact.pokemonit
       - node_modules:/contact.pokemonit/node_modules
+    environment:
+      USER: 'docker'
     stdin_open: true
     tty: true
