@@ -49,19 +49,31 @@ node:
 
 .PHONY: dev
 dev:
+ifeq (${IS_CONTAINER}, true)
+	yarn dev
+else
 	docker-compose exec node yarn dev
+endif
 
 .PHONY: build
 build:
+ifeq (${IS_CONTAINER}, true)
+	yarn build
+else
 	docker-compose exec node yarn build
+endif
 
 .PHONY: start
 start:
+ifeq (${IS_CONTAINER}, true)
+	yarn start
+else
 	docker-compose exec node yarn start
+endif
 
 .PHONY: lint
 lint:
-ifeq (docker,${USER})
+ifeq (${IS_CONTAINER}, true)
 	yarn lint
 else
 	docker-compose exec node yarn lint
