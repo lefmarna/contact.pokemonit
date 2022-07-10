@@ -61,7 +61,11 @@ start:
 
 .PHONY: lint
 lint:
+ifeq (docker,${USER})
+	yarn lint
+else
 	docker-compose exec node yarn lint
+endif
 
 .PHONY: open
 open:
