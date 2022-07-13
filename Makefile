@@ -6,7 +6,7 @@ docker-build:
 init:
 	@make docker-build
 	@make up
-	@make yarn install
+	@make install
 
 .PHONY: setup
 setup:
@@ -39,9 +39,13 @@ destroy:
 ps:
 	docker-compose ps
 
-.PHONY: yarn install
-yarn install:
+.PHONY: install
+install:
+ifeq (${IS_CONTAINER}, true)
+	yarn install
+else
 	docker-compose exec node yarn install
+endif
 
 .PHONY: node
 node:
@@ -49,19 +53,35 @@ node:
 
 .PHONY: dev
 dev:
+ifeq (${IS_CONTAINER}, true)
+	yarn dev
+else
 	docker-compose exec node yarn dev
+endif
 
 .PHONY: build
 build:
+ifeq (${IS_CONTAINER}, true)
+	yarn build
+else
 	docker-compose exec node yarn build
+endif
 
 .PHONY: start
 start:
+ifeq (${IS_CONTAINER}, true)
+	yarn start
+else
 	docker-compose exec node yarn start
+endif
 
 .PHONY: lint
 lint:
+ifeq (${IS_CONTAINER}, true)
+	yarn lint
+else
 	docker-compose exec node yarn lint
+endif
 
 .PHONY: open
 open:

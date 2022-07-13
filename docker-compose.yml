@@ -15,5 +15,7 @@ services:
     volumes:
       - .:/contact.pokemonit
       - node_modules:/contact.pokemonit/node_modules
+    environment:
+      IS_CONTAINER: 'true'
     stdin_open: true
     tty: true
