@@ -25,6 +25,11 @@ export const arduinoState = atom({
   default: '',
 })
 
+export const avrBoardsState = atom({
+  key: 'avrBoardsState',
+  default: '',
+})
+
 export const whereStopState = atom({
   key: 'whereStopState',
   default: '',

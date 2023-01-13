@@ -30,7 +30,7 @@ jobs:
           command: yarn stylelint
 
 workflows:
-  version: 2
   lint_build_deploy:
     jobs:
       - lint
+# VS Code Extension Version: 1.5.1

@@ -10,6 +10,7 @@ import TextFieldForm from '../../components/molecules/TextFieldForm'
 import { versionRegexp } from '../../constants/regexp'
 import {
   ARDUINO_TITLE,
+  AVR_BOARDS_TITLE,
   COMPUTER_TITLE,
   DEBUG_TEXT_FIELD_TITLE,
   LIBRARY_TITLE,
@@ -18,6 +19,7 @@ import {
 } from '../../constants/setup'
 import {
   arduinoState,
+  avrBoardsState,
   computerState,
   computerTextFieldValueState,
   debugTextFieldState,
@@ -69,6 +71,12 @@ const Setup: NextPage = () => {
     setArduinoValue(e.target.value)
   }
 
+  // Arduino AVR Boardsのバージョンを教えてください。
+  const [avrBoardsValue, setAvrBoardsValue] = useRecoilState(avrBoardsState)
+  const onChangeAvrBoardsValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setAvrBoardsValue(e.target.value)
+  }
+
   // どこで止まっていますか？
   const whereStopItems = [
     { value: 'マイコンがPCに認識されない', label: 'マイコンがPCに認識されない' },
@@ -101,6 +109,7 @@ const Setup: NextPage = () => {
     miconValue === '' ||
     libraryValue === '' ||
     !versionRegexp.test(arduinoValue) ||
+    !versionRegexp.test(avrBoardsValue) ||
     whereStopValue === '' ||
     (whereStopValue === 'その他' && whereStopTextFieldValue === '') ||
     debugTextFieldValue === ''
@@ -135,6 +144,14 @@ const Setup: NextPage = () => {
         variant='standard'
         value={arduinoValue}
         onChange={onChangeArduinoValue}
+        placeholder='1.8.19'
+        required={true}
+      />
+      <TextFieldForm
+        formLabel={AVR_BOARDS_TITLE}
+        variant='standard'
+        value={avrBoardsValue}
+        onChange={onChangeAvrBoardsValue}
         placeholder='1.8.2'
         required={true}
       />

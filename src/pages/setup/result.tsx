@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { useRecoilValue } from 'recoil'
 import {
   ARDUINO_TITLE,
+  AVR_BOARDS_TITLE,
   COMPUTER_TITLE,
   DEBUG_TEXT_FIELD_TITLE,
   LIBRARY_TITLE,
@@ -11,6 +12,7 @@ import {
 } from '../../constants/setup'
 import {
   arduinoState,
+  avrBoardsState,
   computerState,
   computerTextFieldValueState,
   debugTextFieldState,
@@ -32,6 +34,7 @@ const SetupResult: NextPage = () => {
   const miconValue = useRecoilValue(miconState)
   const libraryValue = useRecoilValue(libraryState)
   const arduinoValue = useRecoilValue(arduinoState)
+  const avrBoardsValue = useRecoilValue(avrBoardsState)
   const whereStopValue = useRecoilValue(whereStopState)
   const whereStopTextFieldValue = useRecoilValue(whereStopTextFieldState)
   const debugTextFieldValue = useRecoilValue(debugTextFieldState)
@@ -39,7 +42,7 @@ const SetupResult: NextPage = () => {
   const computerResult = computerValue !== 'その他' ? computerValue : computerTextFieldValue
   const whereStopResult = whereStopValue !== 'その他' ? whereStopValue : whereStopTextFieldValue
 
-  const resultMessage = `【${COMPUTER_TITLE}】\n${computerResult}\n\n【${MICON_TITLE}】\n${miconValue}\n\n【${LIBRARY_TITLE}】\n${libraryValue}\n\n【${ARDUINO_TITLE}】\n${arduinoValue}\n\n【${WHERE_STOP_TITLE}】\n${whereStopResult}\n\n【${DEBUG_TEXT_FIELD_TITLE}】\n${debugTextFieldValue}`
+  const resultMessage = `【${COMPUTER_TITLE}】\n${computerResult}\n\n【${MICON_TITLE}】\n${miconValue}\n\n【${LIBRARY_TITLE}】\n${libraryValue}\n\n【${ARDUINO_TITLE}】\n${arduinoValue}\n\n【${AVR_BOARDS_TITLE}】\n${avrBoardsValue}\n\n【${WHERE_STOP_TITLE}】\n${whereStopResult}\n\n【${DEBUG_TEXT_FIELD_TITLE}】\n${debugTextFieldValue}`
 
   const [openTip, setOpenTip] = useState(false)
 
